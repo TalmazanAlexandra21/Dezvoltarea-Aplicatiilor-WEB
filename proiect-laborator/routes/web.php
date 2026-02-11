@@ -1,41 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GymController;
 
-// Pct 2, 3, 11, 13
-Route::get('/', function () {
-    // Pct 13: Link-ul către contact folosind numele rutei
-    return '<h1>Pagina Principala</h1> <a href="'.route('contact.page').'">Mergi la contact</a>';
-});
+// Rutele principale (Pasul 5)
+Route::get('/', [GymController::class, 'home'])->name('home');
+Route::get('/about', [GymController::class, 'about'])->name('about.page');
+Route::get('/services', [GymController::class, 'services'])->name('services.page');
+Route::get('/contact', [GymController::class, 'contact'])->name('contact.page');
 
-// Pct 10, 11
-Route::get('/about', function () {
-    return view('about');
-});
+// Ruta Login - FOARTE IMPORTANT: name('login') repară eroarea Symfony
+Route::get('/login', [GymController::class, 'login'])->name('login');
 
-// Pct 12 (Atribuire nume)
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact.page');
+// Pasul 8 & 16: Ruta Admin protejată cu middleware
+Route::get('/admin', [GymController::class, 'admin'])->middleware('auth')->name('admin.page');
 
-// Pct 4, 5
-Route::post('/login', function () {
-    return "Autentificare...";
-});
-
-// Pct 6, 7
-Route::get('/user/{id}', function ($id) {
-    return "Profil utilizator cu ID = " . $id;
-});
-
-// Pct 8, 9
-Route::get('/article/{category}/{id}', function ($category, $id) {
-    return "Categorie: $category, ID Articol: $id";
-});
-
-// Pct 14, 15, 16 (Grup admin + Middleware)
+// Rute suplimentare pentru grup admin (Pasul 14 & 15)
 Route::prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/', function () { return "Admin Dashboard"; });
-    Route::get('/users', function () { return "Admin Users"; });
-    Route::get('/settings', function () { return "Admin Settings"; });
+    Route::get('/users', function () { return "Lista utilizatori sală"; });
+    Route::get('/settings', function () { return "Setări sistem Gym"; });
 });
