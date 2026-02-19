@@ -6,33 +6,37 @@ use Illuminate\Http\Request;
 
 class GymController extends Controller
 {
-    // Pasul 4: Metoda pentru Home
     public function home() {
-        return view('home');
+        // Aceasta repara eroarea: Undefined variable $infoSală
+        $infoSală = "Cea mai modernă sală de fitness din oraș, dotată cu echipamente de ultimă generație.";
+        return view('home', compact('infoSală'));
     }
 
-    // Pasul 4: Metoda pentru Despre
+    public function services() {
+        // Aceasta repara eroarea: Undefined array key "recomandat"
+        // Am adaugat cheia 'recomandat' pentru fiecare abonament
+        $abonamente = [
+            ['nume' => 'Fitness Basic', 'pret' => '30 €', 'recomandat' => false],
+            ['nume' => 'Premium Gym', 'pret' => '50 €', 'recomandat' => true],
+            ['nume' => 'VIP Coaching', 'pret' => '90 €', 'recomandat' => false]
+        ];
+        return view('services', compact('abonamente'));
+    }
+
     public function about() {
         return view('about');
     }
 
-    // Pasul 4: Metoda pentru Servicii (Pagina suplimentară pentru tema Gym)
-    public function services() {
-        return view('services');
-    }
-
-    // Pasul 4: Metoda pentru Contact
     public function contact() {
         return view('contact');
     }
 
-    // Metoda pentru Login (Necesară pentru a repara eroarea ta)
-    public function login() {
-        return view('login');
-    }
-
-    // Pasul 8: Metoda pentru Admin (Obligatoriu)
     public function admin() {
         return view('admin');
+    }
+
+    // Aceasta repara eroarea: Call to undefined method GymController::login()
+    public function login() {
+        return view('login');
     }
 }

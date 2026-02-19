@@ -3,40 +3,23 @@
 @section('title', 'Servicii')
 
 @section('content')
-    <h1 style="text-align: center; margin-bottom: 40px;">Abonamente și <span style="color: var(--primary);">Servicii</span></h1>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-        <div class="card">
-            <h2 style="color: var(--primary);">BASIC</h2>
-            <p style="font-size: 24px; font-weight: bold;">29€ / lună</p>
-            <ul>
-                <li>Acces nelimitat Fitness</li>
-                <li>Vestiar individual</li>
-                <li>Acces aplicație mobilă</li>
-            </ul>
-            <a href="{{ route('contact.page') }}" class="btn">Alege Basic</a>
-        </div>
-
-        <div class="card" style="transform: scale(1.05); border-color: gold;">
-            <h2 style="color: var(--primary);">PREMIUM</h2>
-            <p style="font-size: 24px; font-weight: bold;">49€ / lună</p>
-            <ul>
-                <li>Acces 24/7 Fitness & Cardio</li>
-                <li>Toate clasele de grup incluse</li>
-                <li>1 Ședință cu antrenor personal</li>
-            </ul>
-            <a href="{{ route('contact.page') }}" class="btn">Alege Premium</a>
-        </div>
-
-        <div class="card">
-            <h2 style="color: var(--primary);">VIP</h2>
-            <p style="font-size: 24px; font-weight: bold;">79€ / lună</p>
-            <ul>
-                <li>Acces Full + SPA & Saună</li>
-                <li>Plan nutrițional personalizat</li>
-                <li>Prosoape și apă incluse</li>
-            </ul>
-            <a href="{{ route('contact.page') }}" class="btn">Alege VIP</a>
-        </div>
+    <h1 style="text-align: center; color: var(--primary);">ALEGE ABONAMENTUL TĂU</h1>
+    <div class="card-container">
+        @foreach($abonamente as $abonament)
+            <div class="card" style="{{ $abonament['recomandat'] ? 'border-top: 5px solid gold;' : '' }}">
+                <h2>{{ $abonament['nume'] }}</h2>
+                <p style="font-size: 24px; color: var(--primary); font-weight: bold;">{{ $abonament['pret'] }} / lună</p>
+                
+                @if($abonament['recomandat'])
+                    <p style="color: gold; font-weight: bold;">⭐ RECOMANDAT</p>
+                @endif
+                
+                <ul style="padding-left: 20px;">
+                    <li>Acces nelimitat</li>
+                    <li>Vestiar individual</li>
+                    <li>Evaluare inițială</li>
+                </ul>
+            </div>
+        @endforeach
     </div>
 @endsection
