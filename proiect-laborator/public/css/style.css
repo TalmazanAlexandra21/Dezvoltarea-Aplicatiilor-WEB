@@ -1,0 +1,83 @@
+:root {
+    --primary: #ff3131; /* Roșu sportiv */
+    --dark: #121212;    /* Negru mat */
+    --gray: #1e1e1e;    /* Gri închis pentru carduri */
+    --text: #ffffff;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: var(--dark);
+    color: var(--text);
+}
+
+header {
+    background: var(--dark);
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 3px solid var(--primary);
+}
+
+header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 35px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+nav {
+    background: #000;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li { margin: 0 20px; }
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+nav ul li a:hover { color: var(--primary); }
+
+.container {
+    min-height: 70vh;
+    padding: 50px 10%;
+}
+
+.card-container {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.card {
+    background: var(--gray);
+    padding: 30px;
+    border-radius: 12px;
+    flex: 1;
+    min-width: 280px;
+    border-left: 6px solid var(--primary);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+footer {
+    background: #000;
+    color: #666;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+    border-top: 1px solid #222;
+}
